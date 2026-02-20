@@ -9,5 +9,6 @@ public class Main {
 
         producerThread.start();
         consumerThread.start();
+        System.out.println("Task completed");
     }
 }

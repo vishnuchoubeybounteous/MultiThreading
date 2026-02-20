@@ -2,11 +2,11 @@ package producerconsumer;
 
 public class SharedBuffer {
     private int data;
-    private boolean available = false; // flag to indicate data availability
+    private boolean available = false; 
 
-    // Producer puts data
+ 
     public synchronized void produce(int value) {
-        while (available) { // wait if data not consumed yet
+        while (available) { 
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -16,12 +16,12 @@ public class SharedBuffer {
         data = value;
         System.out.println("Produced: " + data);
         available = true;
-        notify(); // notify consumer
+        notify();
     }
 
-    // Consumer gets data
+   
     public synchronized void consume() {
-        while (!available) { // wait if no data
+        while (!available) { 
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -30,6 +30,6 @@ public class SharedBuffer {
         }
         System.out.println("Consumed: " + data);
         available = false;
-        notify(); // notify producer
+        notify(); 
     }
 }
