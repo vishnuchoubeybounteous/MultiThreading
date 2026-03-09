@@ -6,7 +6,7 @@ public class SharedBuffer {
 
  
     public synchronized void produce(int value) {
-        while (available) { 
+        if(available) { 
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -21,7 +21,7 @@ public class SharedBuffer {
 
    
     public synchronized void consume() {
-        while (!available) { 
+        if(!available) { 
             try {
                 wait();
             } catch (InterruptedException e) {
